@@ -10,6 +10,15 @@ import { CreateIssueComponent } from '../create-issue/create-issue.component';
 })
 export class IssuesComponent implements OnInit {
   issueList: Issue[] = [];
+  displayedColumns: string[] = [
+    'id',
+    'summary',
+    'createdAt',
+    'lastUpdated',
+    'status',
+    'priority',
+  ];
+  columnsToDisplay = this.displayedColumns.slice(1);
 
   constructor(private dialog: MatDialog) {}
 
@@ -17,8 +26,8 @@ export class IssuesComponent implements OnInit {
 
   createIssue(): void {
     const dialog = this.dialog.open(CreateIssueComponent, { width: '70vw' });
-    dialog
-      .afterClosed()
-      .subscribe((issue: Issue) => this.issueList.push(issue));
+    dialog.afterClosed().subscribe((issue: Issue) => {
+      this.issueList = issue ? [...this.issueList, issue] : this.issueList;
+    });
   }
 }

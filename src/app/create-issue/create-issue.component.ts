@@ -46,8 +46,8 @@ export class CreateIssueComponent implements OnInit {
     this.matDialogRef.close({
       summary,
       description,
-      priority: priority.value,
-      status: status.value,
+      priority: priority.name,
+      status: status.name,
       createdAt: Date.now(),
       lastUpdated: Date.now(),
     });
