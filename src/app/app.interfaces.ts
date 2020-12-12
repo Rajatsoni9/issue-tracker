@@ -4,6 +4,12 @@ export interface Issue {
   description: string;
   createdAt: number;
   lastUpdated: number;
-  status: number;
-  priority: number;
+  status: {
+    name: string,
+    value: number,
+  };
+  priority: {
+    name: string;
+    value: number;
+  };
 }

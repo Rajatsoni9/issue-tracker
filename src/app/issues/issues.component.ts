@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Issue } from '../app.interfaces';
 import { CreateIssueComponent } from '../create-issue/create-issue.component';
+import { IssueService } from '../issue.service';
 
 @Component({
   selector: 'app-issues',
@@ -20,14 +21,15 @@ export class IssuesComponent implements OnInit {
   ];
   columnsToDisplay = this.displayedColumns.slice(1);
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private issueService: IssueService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.issueService.getAllIssues().subscribe((issues: Issue[]) => {
+      this.issueList = issues;
+    });
+  }
 
   createIssue(): void {
-    const dialog = this.dialog.open(CreateIssueComponent, { width: '70vw' });
-    dialog.afterClosed().subscribe((issue: Issue) => {
-      this.issueList = issue ? [...this.issueList, issue] : this.issueList;
-    });
+    this.dialog.open(CreateIssueComponent, { width: '70vw' });
   }
 }

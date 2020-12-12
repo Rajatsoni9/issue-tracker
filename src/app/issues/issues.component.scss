@@ -1,11 +1,11 @@
 .container {
   padding: 0.5rem 0;
   .issue-options {
-      display: flex;
-      padding: 0 0.5rem;
+    display: flex;
+    padding: 0 0.5rem;
     .create-issue {
-        margin-left: auto;
-      }
+      margin-left: auto;
+    }
   }
   table {
     width: 100%;
@@ -16,6 +16,7 @@
     .mat-column-priority {
       width: 12vw;
       max-width: 12vw;
+      padding: 0 10px;
     }
 
     .mat-column-summary {
@@ -24,7 +25,7 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
-      padding-right: 10px;
+      padding: 0 10px;
     }
   }
 }
