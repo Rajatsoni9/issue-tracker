@@ -11,15 +11,6 @@ import { IssueService } from '../issue.service';
 })
 export class IssuesComponent implements OnInit {
   issueList: Issue[] = [];
-  displayedColumns: string[] = [
-    'id',
-    'summary',
-    'createdAt',
-    'lastUpdated',
-    'status',
-    'priority',
-  ];
-  columnsToDisplay = this.displayedColumns.slice(1);
 
   constructor(private dialog: MatDialog, private issueService: IssueService) {}
 
