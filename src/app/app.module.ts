@@ -23,6 +23,7 @@ import { IssueCardComponent } from './issue-card/issue-card.component';
 import { IssueListComponent } from './issue-list/issue-list.component';
 import { IssuesComponent } from './issues/issues.component';
 import { KanbanComponent } from './kanban/kanban.component';
+import { ViewIssueComponent } from './view-issue/view-issue.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { KanbanComponent } from './kanban/kanban.component';
     KanbanComponent,
     IssueListComponent,
     IssueCardComponent,
+    ViewIssueComponent,
   ],
   imports: [
     BrowserModule,

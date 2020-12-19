@@ -27,7 +27,12 @@ export class IssueService {
 
   updateIssue(issue: Issue): Observable<void> {
     const issueIndex = this.issues.findIndex((i: Issue) => i.id === issue.id);
-    this.issues[issueIndex] = {...this.issues[issueIndex], ...issue};
+    this.issues[issueIndex] = { ...this.issues[issueIndex], ...issue };
+    return this.storage.set('issues', this.issues);
+  }
+
+  deleteIssue(issue: Issue): Observable<void> {
+    this.issues = this.issues.filter((i: Issue) => i.id !== issue.id);
     return this.storage.set('issues', this.issues);
   }
 }

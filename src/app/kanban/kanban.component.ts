@@ -1,10 +1,12 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 
 import { STATUSES } from '../app.constants';
 import { Issue } from '../app.interfaces';
 import { IssueService } from '../issue.service';
+import { ViewIssueComponent } from '../view-issue/view-issue.component';
 
 export interface Lane {
   id: number;
@@ -21,7 +23,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
   issueListSubscription: Subscription;
   lanes: Lane[];
 
-  constructor(private issueService: IssueService) {}
+  constructor(private issueService: IssueService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.issueListSubscription = this.issueService
@@ -69,6 +71,11 @@ export class KanbanComponent implements OnInit, OnDestroy {
         });
     }
   }
+
+  viewIssue(issue: Issue): void {
+    this.dialog.open(ViewIssueComponent, {width: '80vw', data: issue});
+  }
+
   ngOnDestroy(): void {
     this.issueListSubscription.unsubscribe();
   }

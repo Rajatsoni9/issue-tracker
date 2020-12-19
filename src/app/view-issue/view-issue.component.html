@@ -1,0 +1,62 @@
+<form [formGroup]="issueForm">
+  <header>
+    <textarea
+      mat-dialog-title
+      cdkTextareaAutosize
+      class="summary-editor"
+      placeholder="Enter issue summary"
+      formControlName="summary"
+      required
+      >{{ issue?.summary }}</textarea
+    >
+    <div class="issue-actions">
+      <button
+        mat-button
+        mat-icon-button
+        mat-dialog-close
+        class="delete-button"
+        (click)="deleteIssue()"
+      >
+        <mat-icon>delete_outline</mat-icon>
+      </button>
+      <button mat-button mat-icon-button class="close-button" (click)="saveIssueDetails()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </header>
+  <div mat-dialog-content cdkFocusRegionStart>
+    <section>
+      <h4>Description</h4>
+      <textarea
+        cdkTextareaAutosize
+        class="description-editor"
+        placeholder="Enter issue description"
+        formControlName="description"
+        required
+        >{{ issue?.description }}</textarea
+      >
+    </section>
+    <aside>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Priority</mat-label>
+          <mat-select formControlName="priority">
+            <mat-option *ngFor="let p of priorities" [value]="p.value">{{
+              p.name
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let s of statuses" [value]="s.value">{{
+              s.name
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+    </aside>
+  </div>
+</form>
