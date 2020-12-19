@@ -23,7 +23,7 @@ export class IssueListComponent implements OnInit {
   constructor(private issueService: IssueService) {}
 
   ngOnInit(): void {
-    this.issueService.getAllIssues().subscribe((issues: Issue[]) => {
+    this.issueService.getAllIssues().subscribe((issues: Issue[] = []) => {
       this.issueList = [...issues];
     });
   }

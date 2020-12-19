@@ -28,7 +28,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.issueListSubscription = this.issueService
       .getAllIssues()
-      .subscribe((issues: Issue[]) => {
+      .subscribe((issues: Issue[] = []) => {
         this.issueList = [...issues];
         this.lanes = STATUSES.map((status) => {
           return {
