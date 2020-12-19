@@ -47,8 +47,11 @@ export class CreateIssueComponent implements OnInit {
       createdAt: Date.now(),
       lastUpdated: Date.now(),
     };
-    this.issueService.createIssue(issue).subscribe(() => {
-      this.matDialogRef.close();
-    });
+    this.issueService
+      .createIssue(issue)
+      .toPromise()
+      .then(() => {
+        this.matDialogRef.close();
+      });
   }
 }

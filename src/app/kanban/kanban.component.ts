@@ -1,9 +1,7 @@
-import {
-  CdkDragDrop,
-  moveItemInArray,
-  transferArrayItem,
-} from '@angular/cdk/drag-drop';
-import { Component, Input, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { STATUSES } from '../app.constants';
 import { Issue } from '../app.interfaces';
 import { IssueService } from '../issue.service';
@@ -18,24 +16,26 @@ export interface Lane {
   templateUrl: './kanban.component.html',
   styleUrls: ['./kanban.component.scss'],
 })
-export class KanbanComponent implements OnInit {
+export class KanbanComponent implements OnInit, OnDestroy {
   private issueList: Issue[];
-
+  issueListSubscription: Subscription;
   lanes: Lane[];
 
   constructor(private issueService: IssueService) {}
 
   ngOnInit(): void {
-    this.issueService.getAllIssues().subscribe((issues: Issue[]) => {
-      this.issueList = [...issues];
-      this.lanes = STATUSES.map((status) => {
-        return {
-          name: status.name,
-          id: status.value,
-          issues: this.getIssuesByStatus(status.name),
-        };
+    this.issueListSubscription = this.issueService
+      .getAllIssues()
+      .subscribe((issues: Issue[]) => {
+        this.issueList = [...issues];
+        this.lanes = STATUSES.map((status) => {
+          return {
+            name: status.name,
+            id: status.value,
+            issues: this.getIssuesByStatus(status.name),
+          };
+        });
       });
-    });
   }
 
   getIssuesByStatus(status: string): Issue[] {
@@ -52,12 +52,24 @@ export class KanbanComponent implements OnInit {
         event.currentIndex
       );
     } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex
-      );
+      const issue: Issue = {
+        ...event.item.data,
+        status: STATUSES[event.container.id],
+      };
+      this.issueService
+        .updateIssue(issue)
+        .toPromise()
+        .then(() => {
+          transferArrayItem(
+            event.previousContainer.data,
+            event.container.data,
+            event.previousIndex,
+            event.currentIndex
+          );
+        });
     }
+  }
+  ngOnDestroy(): void {
+    this.issueListSubscription.unsubscribe();
   }
 }
