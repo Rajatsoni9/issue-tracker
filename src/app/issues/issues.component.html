@@ -19,13 +19,7 @@
     </div>
   </div>
 
-  <app-issue-list
-    *ngIf="group.value === 'list'"
-    [issueList]="issueList"
-  ></app-issue-list>
+  <app-issue-list *ngIf="group.value === 'list'"></app-issue-list>
 
-  <app-kanban
-    *ngIf="group.value === 'kanban'"
-    [issueList]="issueList"
-  ></app-kanban>
+  <app-kanban *ngIf="group.value === 'kanban'"></app-kanban>
 </div>

@@ -1,0 +1,10 @@
+<mat-card>
+  <mat-card-content>
+    <p>{{ issue?.summary }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button disabled>
+      <mat-icon class="{{issue?.priority?.name | lowercase }}">{{ issue?.priority?.icon }}</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
