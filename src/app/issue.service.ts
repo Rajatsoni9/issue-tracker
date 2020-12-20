@@ -19,8 +19,8 @@ export class IssueService {
   getAllIssues(): Observable<Issue[]> {
     return this.storage.watch('issues').pipe(
       catchError(() => of([])),
-      tap((issues: Issue[]) => {
-        this.issues = issues ? issues : [];
+      tap((issues: Issue[] = []) => {
+        this.issues = issues;
       })
     );
   }

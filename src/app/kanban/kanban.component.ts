@@ -1,4 +1,8 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -73,10 +77,12 @@ export class KanbanComponent implements OnInit, OnDestroy {
   }
 
   viewIssue(issue: Issue): void {
-    this.dialog.open(ViewIssueComponent, {width: '80vw', data: issue});
+    this.dialog.open(ViewIssueComponent, { width: '80vw', data: issue });
   }
 
   ngOnDestroy(): void {
-    this.issueListSubscription.unsubscribe();
+    if (this.issueListSubscription) {
+      this.issueListSubscription.unsubscribe();
+    }
   }
 }
