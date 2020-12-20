@@ -20,8 +20,11 @@ describe('ViewIssueComponent', () => {
   let fixture: ComponentFixture<ViewIssueComponent>;
   let loader: HarnessLoader;
   let issueServiceSpy: jasmine.SpyObj<IssueService>;
+  let matDialogRefSpy: jasmine.SpyObj<MatDialogRef<ViewIssueComponent>>;
+
   beforeEach(async () => {
     issueServiceSpy = jasmine.createSpyObj('IssueService', ['updateIssue']);
+    matDialogRefSpy = jasmine.createSpyObj('MatDialogRef', ['close']);
     await TestBed.configureTestingModule({
       declarations: [ViewIssueComponent],
       imports: [
@@ -42,7 +45,7 @@ describe('ViewIssueComponent', () => {
             status: { name: 'Open', value: 0 },
           },
         },
-        { provide: MatDialogRef, useValue: {} },
+        { provide: MatDialogRef, useValue: matDialogRefSpy },
         { provide: IssueService, useValue: issueServiceSpy },
       ],
     }).compileComponents();

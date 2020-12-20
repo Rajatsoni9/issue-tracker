@@ -56,22 +56,22 @@ describe('IssuesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should show IssueList when list is selected', async () => {
-    const [listButtonToggle, kanbanButtonToggle] = await loader.getAllHarnesses(
+  it('should show AppKanban when kanban is selected', async () => {
+    const [kanbanButtonToggle, listButtonToggle] = await loader.getAllHarnesses(
       MatButtonToggleHarness
     );
-    expect(await listButtonToggle.isChecked()).toEqual(true);
-    expect(fixture.debugElement.query(By.css('app-issue-list'))).not.toBeNull();
-    expect(fixture.debugElement.query(By.css('app-kanban'))).toBeNull();
+    expect(await kanbanButtonToggle.isChecked()).toEqual(true);
+    expect(fixture.debugElement.query(By.css('app-kanban'))).not.toBeNull();
+    expect(fixture.debugElement.query(By.css('app-issue-list'))).toBeNull();
   });
 
-  it('should show AppKanban when kanban is selected', async () => {
-    const [listButtonToggle, kanbanButtonToggle] = await loader.getAllHarnesses(
+  it('should show IssueList when list is selected', async () => {
+    const [kanbanButtonToggle, listButtonToggle] = await loader.getAllHarnesses(
       MatButtonToggleHarness
     );
-    expect(await kanbanButtonToggle.check());
-    expect(fixture.debugElement.query(By.css('app-issue-list'))).toBeNull();
-    expect(fixture.debugElement.query(By.css('app-kanban'))).not.toBeNull();
+    expect(await listButtonToggle.check());
+    expect(fixture.debugElement.query(By.css('app-issue-list'))).not.toBeNull();
+    expect(fixture.debugElement.query(By.css('app-kanban'))).toBeNull();
   });
 
   it('#createIssue opens dialog', () => {
