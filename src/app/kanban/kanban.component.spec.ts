@@ -28,9 +28,9 @@ describe('KanbanComponent', () => {
         {
           id: 1234,
           summary: 'testSummary',
-          description: 'testDesctiption',
-          priority: { name: 'Critical', value: 0, icon: 'testIcon' },
-          status: { name: 'Open', value: 0 },
+          description: 'testDescription',
+          priority: 'Critical',
+          status: 'Open',
           createdAt: 1234,
           lastUpdated: 1234,
         },
@@ -63,7 +63,7 @@ describe('KanbanComponent', () => {
     expect(await issueCard.getText()).toContain('testSummary');
 
     const priorityIconElement = await loader.getHarness(MatButtonHarness);
-    expect(await priorityIconElement.getText()).toEqual('testIcon');
+    expect(await priorityIconElement.getText()).toEqual('arrow_upward');
     expect(fixture.debugElement.query(By.css('.critical'))).not.toBeNull();
   });
 

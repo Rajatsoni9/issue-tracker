@@ -41,8 +41,8 @@ describe('ViewIssueComponent', () => {
           useValue: {
             summary: 'testSummary',
             description: 'testDescription',
-            priority: { name: 'Critical', value: 0, icon: 'testIcon' },
-            status: { name: 'Open', value: 0 },
+            priority: 'Critical',
+            status: 'Open',
           },
         },
         { provide: MatDialogRef, useValue: matDialogRefSpy },
@@ -92,9 +92,9 @@ describe('ViewIssueComponent', () => {
     const highPriorityOption = await prioritySelect.getOptions({
       text: 'High',
     });
-    expect(component.issueForm.get('priority').value).toEqual(0);
+    expect(component.issueForm.get('priority').value).toEqual('Critical');
     await highPriorityOption[0].click();
-    expect(component.issueForm.get('priority').value).toEqual(1);
+    expect(component.issueForm.get('priority').value).toEqual('High');
     await closeButton.click();
     expect(issueServiceSpy.updateIssue).toHaveBeenCalledTimes(1);
   });

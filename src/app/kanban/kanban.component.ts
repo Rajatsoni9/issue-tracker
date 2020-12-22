@@ -34,11 +34,11 @@ export class KanbanComponent implements OnInit, OnDestroy {
       .getAllIssues()
       .subscribe((issues: Issue[] = []) => {
         this.issueList = [...issues];
-        this.lanes = STATUSES.map((status) => {
+        this.lanes = STATUSES.map((status, index) => {
           return {
-            name: status.name,
-            id: status.value,
-            issues: this.getIssuesByStatus(status.name),
+            name: status,
+            id: index,
+            issues: this.getIssuesByStatus(status),
           };
         });
       });
@@ -46,7 +46,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
 
   getIssuesByStatus(status: string): Issue[] {
     return this.issueList.filter(
-      (issue: Issue) => issue.status.name === status
+      (issue: Issue) => issue.status === status
     );
   }
 

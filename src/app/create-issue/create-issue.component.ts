@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 import { PRIORITIES, STATUSES } from '../app.constants';
-import { Issue, IssuePriority, IssueStatus } from '../app.interfaces';
+import { Issue } from '../app.interfaces';
 import { IssueService } from '../issue.service';
 
 @Component({
@@ -14,9 +14,9 @@ import { IssueService } from '../issue.service';
 export class CreateIssueComponent implements OnInit {
   issueForm: FormGroup;
 
-  priorities: IssuePriority[] = PRIORITIES;
+  priorities: string[] = PRIORITIES;
 
-  statuses: IssueStatus[] = STATUSES;
+  statuses: string[] = STATUSES;
 
   constructor(
     private matDialogRef: MatDialogRef<CreateIssueComponent>,

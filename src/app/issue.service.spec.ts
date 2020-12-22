@@ -19,12 +19,12 @@ describe('IssueService', () => {
       ],
     });
     service = TestBed.inject(IssueService);
-    const testIssue = {
+    const testIssue: Issue = {
       id: 123456789,
       summary: 'testSummary',
       description: 'testDescription',
-      priority: { name: 'Critical', value: 0, icon: 'testIcon' },
-      status: { name: 'Open', value: 0 },
+      priority: 'Critical',
+      status:  'Open',
       createdAt: 123456789,
       lastUpdated: 123456789,
     };
@@ -65,8 +65,8 @@ describe('IssueService', () => {
       id: 123456789,
       summary: 'testSummary',
       description: 'testDescription',
-      priority: { name: 'Critical', value: 0, icon: 'testIcon' },
-      status: { name: 'Open', value: 0 },
+      priority: 'Critical',
+      status: 'Open',
       createdAt: 123456789,
       lastUpdated: 123456789,
     };
@@ -83,8 +83,8 @@ describe('IssueService', () => {
       id: 123456789,
       summary: 'testSummary',
       description: 'testDescription',
-      priority: { name: 'Critical', value: 0, icon: 'testIcon' },
-      status: { name: 'Open', value: 0 },
+      priority: 'Critical',
+      status: 'Open',
       createdAt: 123456789,
       lastUpdated: 123456789,
     };
@@ -100,8 +100,8 @@ describe('IssueService', () => {
       id: 123456789,
       summary: 'testSummary',
       description: 'testDescription',
-      priority: { name: 'Critical', value: 0, icon: 'testIcon' },
-      status: { name: 'Open', value: 0 },
+      priority: 'Critical',
+      status: 'Open',
       createdAt: 123456789,
       lastUpdated: 123456789,
     };

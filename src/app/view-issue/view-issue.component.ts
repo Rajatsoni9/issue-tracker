@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import { PRIORITIES, STATUSES } from '../app.constants';
-import { Issue, IssuePriority, IssueStatus } from '../app.interfaces';
+import { Issue } from '../app.interfaces';
 import { IssueService } from '../issue.service';
 
 @Component({
@@ -14,9 +14,9 @@ import { IssueService } from '../issue.service';
 export class ViewIssueComponent implements OnInit {
   issueForm: FormGroup;
 
-  priorities: IssuePriority[] = PRIORITIES;
+  priorities: string[] = PRIORITIES;
 
-  statuses: IssueStatus[] = STATUSES;
+  statuses: string[] = STATUSES;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public issue: Issue,
@@ -30,8 +30,8 @@ export class ViewIssueComponent implements OnInit {
       {
         summary: this.issue.summary,
         description: this.issue.description,
-        priority: this.issue.priority.value,
-        status: this.issue.status.value,
+        priority: this.issue.priority,
+        status: this.issue.status,
       },
       { validators: Validators.required }
     );
@@ -54,8 +54,8 @@ export class ViewIssueComponent implements OnInit {
         ...this.issue,
         summary,
         description,
-        priority: this.priorities[priority],
-        status: this.statuses[status],
+        priority,
+        status,
         lastUpdated: Date.now(),
       };
       this.issueService

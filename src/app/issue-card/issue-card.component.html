@@ -4,7 +4,7 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-icon-button disabled>
-      <mat-icon class="{{issue?.priority?.name | lowercase }}">{{ issue?.priority?.icon }}</mat-icon>
+      <mat-icon class="{{issue?.priority | lowercase }}">{{getIcon(issue?.priority)}}</mat-icon>
     </button>
   </mat-card-actions>
 </mat-card>

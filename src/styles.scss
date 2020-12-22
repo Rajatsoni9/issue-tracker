@@ -2,3 +2,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cdk-drag-placeholder {
+    mat-card {
+        & > * {
+            visibility: hidden;
+        }
+        opacity: 0.5;
+        border: 1px dashed lightblue;
+    }
+}

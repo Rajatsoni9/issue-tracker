@@ -35,14 +35,14 @@ describe('IssueCardComponent', () => {
       summary: 'testSummary',
       id: 1,
       description: 'testDescription',
-      priority: { name: 'Critical', value: 0, icon: 'testIcon' },
-      status: { name: 'Open', value: 0 },
+      priority: 'Critical',
+      status: 'Open',
       createdAt: 1234,
       lastUpdated: 1234,
     };
     fixture.detectChanges();
     await fixture.whenStable();
     expect(fixture.debugElement.query(By.css('p')).nativeElement.textContent).toEqual('testSummary');
-    expect(fixture.debugElement.query(By.css('.critical')).nativeElement.textContent).toEqual('testIcon');
+    expect(fixture.debugElement.query(By.css('.critical')).nativeElement.textContent).toEqual('arrow_upward');
   });
 });
