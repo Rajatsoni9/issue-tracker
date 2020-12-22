@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
@@ -51,6 +52,7 @@ import { ViewIssueComponent } from './view-issue/view-issue.component';
     MatCheckboxModule,
     MatRadioModule,
     MatTableModule,
+    MatSortModule,
     MatButtonToggleModule,
     DragDropModule,
   ],

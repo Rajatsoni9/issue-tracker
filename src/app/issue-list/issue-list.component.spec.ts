@@ -5,6 +5,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatTableHarness } from '@angular/material/table/testing';
 import { By } from '@angular/platform-browser';
+import { of } from 'rxjs';
+import { IssueService } from '../issue.service';
 
 import { IssueListComponent } from './issue-list.component';
 
@@ -12,10 +14,27 @@ describe('IssueListComponent', () => {
   let component: IssueListComponent;
   let fixture: ComponentFixture<IssueListComponent>;
   let loader: HarnessLoader;
+  let issueServiceSpy: jasmine.SpyObj<IssueService>;
   beforeEach(async () => {
+    issueServiceSpy = jasmine.createSpyObj('IssueService', ['getAllIssues']);
+    issueServiceSpy.getAllIssues.and.returnValue(
+      of([
+        {
+          id: 1234,
+          summary: 'testSummary',
+          description: 'testDescription',
+          priority: 'Critical',
+          status: 'Open',
+          createdAt: 1234,
+          lastUpdated: 1234,
+        },
+      ])
+    );
+
     await TestBed.configureTestingModule({
       declarations: [IssueListComponent],
       imports: [MatTableModule, MatDialogModule],
+      providers: [{ provide: IssueService, useValue: issueServiceSpy }],
     }).compileComponents();
   });
 
@@ -31,30 +50,16 @@ describe('IssueListComponent', () => {
   });
 
   it('should not display table when issues are not available', async () => {
-    component.issueList = [];
+    component.issuesTableDataSource.data = [];
     await fixture.detectChanges();
-    const noIssuesElement = fixture.debugElement.query(By.css('.no-issues'))
-      .nativeElement as HTMLParagraphElement;
-    expect(noIssuesElement).not.toBeNull();
-    expect(noIssuesElement.textContent).toEqual('No issues available');
+    const issuesTable = await loader.getHarness(MatTableHarness);
+    const rows = await issuesTable.getRows();
+    expect(rows.length).toEqual(1);
+    const [cellText] = await rows[0].getCellTextByIndex();
+    expect(cellText).toEqual('No issues available');
   });
 
   it('should not display table with values when issues are available', async () => {
-    component.issueList = [
-      {
-        id: 1234,
-        summary: 'testSummary',
-        description: 'testDesctiption',
-        priority: { name: 'Critical', value: 0, icon: 'testIcon' },
-        status: { name: 'Open', value: 0 },
-        createdAt: 1234,
-        lastUpdated: 1234,
-      },
-    ];
-    await fixture.detectChanges();
-    const noIssuesElement = fixture.debugElement.query(By.css('.no-issues'));
-    expect(noIssuesElement).toBeNull();
-
     const issuesTable = await loader.getHarness(MatTableHarness);
     const rows = await issuesTable.getRows();
     expect(rows.length).toEqual(1);

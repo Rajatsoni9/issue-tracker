@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+
 import { Issue } from '../app.interfaces';
 import { IssueService } from '../issue.service';
 
@@ -7,8 +10,8 @@ import { IssueService } from '../issue.service';
   templateUrl: './issue-list.component.html',
   styleUrls: ['./issue-list.component.scss'],
 })
-export class IssueListComponent implements OnInit {
-  issueList: Issue[];
+export class IssueListComponent implements OnInit, AfterViewInit {
+  issuesTableDataSource: MatTableDataSource<Issue>;
 
   displayedColumns: string[] = [
     'id',
@@ -20,11 +23,19 @@ export class IssueListComponent implements OnInit {
   ];
   columnsToDisplay = this.displayedColumns.slice(1);
 
-  constructor(private issueService: IssueService) {}
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(private issueService: IssueService) {
+    this.issuesTableDataSource = new MatTableDataSource([]);
+  }
 
   ngOnInit(): void {
     this.issueService.getAllIssues().subscribe((issues: Issue[] = []) => {
-      this.issueList = [...issues];
+      this.issuesTableDataSource.data = [...issues];
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.issuesTableDataSource.sort = this.sort;
   }
 }
