@@ -18,9 +18,26 @@ table {
     overflow: hidden;
     padding: 0 10px;
   }
-}
 
-.no-issues {
-  padding: 1rem;
-  text-align: center;
+  .mat-column-priority {
+    p {
+      margin: 0;
+      border-radius: 5px;
+      color: white;
+      text-align: center;
+
+      &.critical {
+        background: orangered;
+      }
+      &.high {
+        background: darkorange;
+      }
+      &.medium {
+        background: dodgerblue;
+      }
+      &.low {
+        background: limegreen;
+      }
+    }
+  }
 }

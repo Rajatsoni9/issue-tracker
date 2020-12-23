@@ -9,16 +9,16 @@ mat-card {
     }
     mat-icon {
         &.critical {
-            color: red;
+            color: orangered;
         }
         &.high {
-            color: orange;
+            color: darkorange;
         }
         &.medium {
-            color: lightblue;
+            color: dodgerblue;
         }
         &.low {
-            color: lightgreen;
+            color: limegreen;
         }
     }
 }
