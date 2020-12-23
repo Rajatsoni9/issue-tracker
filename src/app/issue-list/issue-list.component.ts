@@ -42,6 +42,6 @@ export class IssueListComponent implements OnInit, AfterViewInit {
   }
 
   viewIssue(issue: Issue): void {
-    this.dialog.open(ViewIssueComponent, { width: '80vw', data: issue });
+    this.dialog.open(ViewIssueComponent, { width: '70vw', data: issue });
   }
 }

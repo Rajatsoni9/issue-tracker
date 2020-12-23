@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { DEFAULT_ISSUES } from './app.constants';
 import { Issue } from './app.interfaces';
 
 @Injectable({
@@ -20,7 +21,19 @@ export class IssueService {
     return this.storage.watch('issues').pipe(
       catchError(() => of([])),
       tap((issues: Issue[] = []) => {
-        this.issues = issues;
+        if (issues.length === 0) {
+          this.storage
+            .has('issues')
+            .toPromise()
+            .then((hasIssuesInStorage: boolean) => {
+              if (!hasIssuesInStorage) {
+                this.storage.set('issues', DEFAULT_ISSUES).toPromise();
+                this.issues = DEFAULT_ISSUES;
+              }
+            });
+        } else {
+          this.issues = issues;
+        }
       })
     );
   }

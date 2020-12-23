@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { of, throwError } from 'rxjs';
 
+import { DEFAULT_ISSUES } from './app.constants';
 import { Issue } from './app.interfaces';
 import { IssueService } from './issue.service';
 
@@ -9,7 +10,7 @@ describe('IssueService', () => {
   let service: IssueService;
   let storageMapSpy: jasmine.SpyObj<StorageMap>;
   beforeEach(() => {
-    storageMapSpy = jasmine.createSpyObj('StorageMap', ['set', 'get', 'watch']);
+    storageMapSpy = jasmine.createSpyObj('StorageMap', ['set', 'get', 'watch', 'has']);
     TestBed.configureTestingModule({
       providers: [
         {
@@ -45,6 +46,7 @@ describe('IssueService', () => {
   });
 
   it('#getAllIssues should return empty array when fetching issues from storage fails', (done) => {
+    storageMapSpy.has.and.returnValue(of(true));
     storageMapSpy.watch.and.returnValue(throwError(new Error()));
     service.getAllIssues().subscribe((issues: Issue[]) => {
       expect(issues.length).toEqual(0);
@@ -52,11 +54,15 @@ describe('IssueService', () => {
     });
   });
 
-  it('#getAllIssues should return empty array when issues from storage are not available', (done) => {
-    storageMapSpy.watch.and.returnValue(of(undefined));
-    service.getAllIssues().subscribe((issues: Issue[]) => {
-      expect(service.issues.length).toEqual(0);
+  it('#getAllIssues should return default issues when issues from storage are not available', (done) => {
+    storageMapSpy.has.and.returnValue(of(false));
+    storageMapSpy.watch.and.returnValue(of([]));
+    service.getAllIssues().subscribe();
+    storageMapSpy.set.and.callFake((key: string, value: unknown) => {
+      expect(key).toEqual('issues');
+      expect(value).toEqual(DEFAULT_ISSUES);
       done();
+      return of();
     });
   });
 
