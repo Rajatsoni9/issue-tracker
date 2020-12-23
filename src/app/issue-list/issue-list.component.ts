@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Issue } from '../app.interfaces';
 import { IssueService } from '../issue.service';
+import { ViewIssueComponent } from '../view-issue/view-issue.component';
 
 @Component({
   selector: 'app-issue-list',
@@ -25,7 +27,7 @@ export class IssueListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private issueService: IssueService) {
+  constructor(private issueService: IssueService, private dialog: MatDialog) {
     this.issuesTableDataSource = new MatTableDataSource([]);
   }
 
@@ -37,5 +39,9 @@ export class IssueListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.issuesTableDataSource.sort = this.sort;
+  }
+
+  viewIssue(issue: Issue): void {
+    this.dialog.open(ViewIssueComponent, { width: '80vw', data: issue });
   }
 }
