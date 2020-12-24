@@ -3,8 +3,8 @@
     <p>{{ issue?.summary }}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-icon-button disabled>
-      <mat-icon class="{{issue?.priority | lowercase }}">{{getIcon(issue?.priority)}}</mat-icon>
-    </button>
+    <mat-icon class="{{ issue?.priority | lowercase }}">{{
+      getIcon(issue?.priority)
+    }}</mat-icon>
   </mat-card-actions>
 </mat-card>

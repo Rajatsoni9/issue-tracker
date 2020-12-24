@@ -2,11 +2,11 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatCardModule } from '@angular/material/card';
 import { MatCardHarness } from '@angular/material/card/testing';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatIconHarness } from '@angular/material/icon/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
@@ -69,8 +69,8 @@ describe('KanbanComponent', () => {
     const [issueCard] = await loader.getAllHarnesses(MatCardHarness);
     expect(await issueCard.getText()).toContain('testSummary');
 
-    const priorityIconElement = await loader.getHarness(MatButtonHarness);
-    expect(await priorityIconElement.getText()).toEqual('arrow_upward');
+    const priorityIconElement = await loader.getHarness(MatIconHarness);
+    expect(await priorityIconElement.getName()).toEqual('arrow_upward');
     expect(fixture.debugElement.query(By.css('.critical'))).not.toBeNull();
   });
 

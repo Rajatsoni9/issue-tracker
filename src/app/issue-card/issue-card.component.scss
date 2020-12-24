@@ -8,17 +8,18 @@ mat-card {
         background: #ebecf0;
     }
     mat-icon {
+        padding: 0.5rem;
         &.critical {
             color: orangered;
         }
         &.high {
-            color: darkorange;
+            color: #e91e63;
         }
         &.medium {
             color: dodgerblue;
         }
         &.low {
-            color: limegreen;
+            color: #26a926;
         }
     }
 }
