@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCardHarness } from '@angular/material/card/testing';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
 
@@ -39,7 +40,13 @@ describe('KanbanComponent', () => {
     matDialogSpy = jasmine.createSpyObj('MatDialog', ['open']);
     await TestBed.configureTestingModule({
       declarations: [KanbanComponent, IssueCardComponent],
-      imports: [MatDialogModule, DragDropModule, MatIconModule, MatCardModule],
+      imports: [
+        MatDialogModule,
+        DragDropModule,
+        MatIconModule,
+        MatCardModule,
+        MatSnackBarModule,
+      ],
       providers: [
         { provide: IssueService, useValue: issueServiceSpy },
         { provide: MatDialog, useValue: matDialogSpy },

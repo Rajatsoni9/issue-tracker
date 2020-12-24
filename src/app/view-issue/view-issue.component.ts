@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { PRIORITIES, STATUSES } from '../app.constants';
 import { Issue } from '../app.interfaces';
@@ -22,7 +23,8 @@ export class ViewIssueComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public issue: Issue,
     private matDialogRef: MatDialogRef<ViewIssueComponent>,
     private issueService: IssueService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +65,11 @@ export class ViewIssueComponent implements OnInit {
         .toPromise()
         .then(() => {
           this.matDialogRef.close();
+        })
+        .catch(() => {
+          this.snackBar.open('Browser storage unavailable!', null, {
+            duration: 3000,
+          });
         });
     } else {
       this.matDialogRef.close();

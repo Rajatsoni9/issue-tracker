@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -55,6 +57,7 @@ import { ViewIssueComponent } from './view-issue/view-issue.component';
     MatSortModule,
     MatButtonToggleModule,
     DragDropModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

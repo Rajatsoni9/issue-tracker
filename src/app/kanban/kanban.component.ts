@@ -1,6 +1,7 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 
 import { STATUSES } from '../app.constants';
@@ -23,7 +24,11 @@ export class KanbanComponent implements OnInit, OnDestroy {
   issueListSubscription: Subscription;
   lanes: Lane[];
 
-  constructor(private issueService: IssueService, private dialog: MatDialog) {}
+  constructor(
+    private issueService: IssueService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.issueListSubscription = this.issueService
@@ -41,9 +46,7 @@ export class KanbanComponent implements OnInit, OnDestroy {
   }
 
   getIssuesByStatus(status: string): Issue[] {
-    return this.issueList.filter(
-      (issue: Issue) => issue.status === status
-    );
+    return this.issueList.filter((issue: Issue) => issue.status === status);
   }
 
   drop(event: CdkDragDrop<Issue[]>): void {
@@ -68,6 +71,11 @@ export class KanbanComponent implements OnInit, OnDestroy {
             event.previousIndex,
             event.currentIndex
           );
+        })
+        .catch(() => {
+          this.snackBar.open('Browser storage unavailable!', null, {
+            duration: 3000,
+          });
         });
     }
   }

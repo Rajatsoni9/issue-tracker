@@ -30,7 +30,7 @@ export class IssueService {
                 this.storage.set('issues', DEFAULT_ISSUES).toPromise();
                 this.issues = DEFAULT_ISSUES;
               }
-            });
+            }).catch(() => {});
         } else {
           this.issues = issues;
         }

@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSelectHarness } from '@angular/material/select/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
@@ -34,6 +35,7 @@ describe('ViewIssueComponent', () => {
         MatSelectModule,
         MatFormFieldModule,
         ReactiveFormsModule,
+        MatSnackBarModule,
       ],
       providers: [
         {

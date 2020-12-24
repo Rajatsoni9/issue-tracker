@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -32,6 +33,7 @@ describe('AppComponent', () => {
         MatRadioModule,
         MatTableModule,
         MatButtonToggleModule,
+        MatSnackBarModule,
       ],
       declarations: [AppComponent],
     }).compileComponents();
