@@ -44,3 +44,16 @@ aside {
   text-align: center;
   width: 40%;
 }
+
+@media screen and (max-width: 800px) {
+  div[mat-dialog-content] {
+    display: block;
+    section, aside {
+      width: 100%;
+    }
+  }
+  .summary-editor {
+    width: 100%;
+    padding-top: 40px;
+  }
+}
