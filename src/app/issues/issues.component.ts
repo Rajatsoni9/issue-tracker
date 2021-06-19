@@ -10,11 +10,11 @@ import { IssueService } from '../issue.service';
   styleUrls: ['./issues.component.scss'],
 })
 export class IssuesComponent implements OnInit {
-  constructor(private dialog: MatDialog, private issueService: IssueService) {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
   createIssue(): void {
-    this.dialog.open(CreateIssueComponent, { width: '70vw' });
+    this.dialog.open(CreateIssueComponent, { width: '80vw' });
   }
 }
