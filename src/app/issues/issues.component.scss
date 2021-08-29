@@ -6,5 +6,8 @@
     .filter-options {
       flex: 1;
     }
+    .issues-view button.active {
+      background: rgba(0,0,0,0.15);
+    }
   }
 }
