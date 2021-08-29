@@ -12,8 +12,8 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'kanban' }
     ]
   },
-  { path: '', pathMatch: 'full', redirectTo: '/issues' },
-  { path: '**', redirectTo: '/issues' },
+  { path: '', pathMatch: 'full', redirectTo: '/issues/kanban' },
+  { path: '**', redirectTo: '/issues/kanban' },
 ];
 
 @NgModule({
