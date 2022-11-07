@@ -20,13 +20,7 @@
       >
         <mat-icon>delete_outline</mat-icon>
       </button>
-      <button
-        mat-button
-        mat-icon-button
-        aria-label="close button"
-        class="close-button"
-        (click)="saveIssueDetails()"
-      >
+      <button mat-button mat-icon-button aria-label="close button" class="close-button" (click)="saveIssueDetails()">
         <mat-icon>close</mat-icon>
       </button>
     </div>
@@ -48,11 +42,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Priority</mat-label>
           <mat-select formControlName="priority">
-            <mat-option
-              *ngFor="let priority of priorities"
-              [value]="priority"
-              >{{ priority }}</mat-option
-            >
+            <mat-option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</mat-option>
           </mat-select>
         </mat-form-field>
       </p>
@@ -60,9 +50,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Status</mat-label>
           <mat-select formControlName="status">
-            <mat-option *ngFor="let status of statuses" [value]="status">{{
-              status
-            }}</mat-option>
+            <mat-option *ngFor="let status of statuses" [value]="status">{{ status }}</mat-option>
           </mat-select>
         </mat-form-field>
       </p>

@@ -22,9 +22,7 @@
   <ng-container matColumnDef="priority">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
     <td mat-cell *matCellDef="let issue">
-      <p class="{{ issue?.priority | lowercase }}">{{
-        issue?.priority
-      }}</p>
+      <p class="{{ issue?.priority | lowercase }}">{{ issue?.priority }}</p>
     </td>
   </ng-container>
 

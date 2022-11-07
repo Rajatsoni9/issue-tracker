@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit } from "@angular/core";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { MatDialogRef } from "@angular/material/dialog";
 
-import { PRIORITIES, STATUSES } from '../app.constants';
-import { Issue } from '../app.interfaces';
-import { IssueService } from '../issue.service';
+import { PRIORITIES, STATUSES } from "../app.constants";
+import { Issue } from "../app.interfaces";
+import { IssueService } from "../issue.service";
 
 @Component({
-  selector: 'app-create-issue',
-  templateUrl: './create-issue.component.html',
-  styleUrls: ['./create-issue.component.scss'],
+  selector: "app-create-issue",
+  templateUrl: "./create-issue.component.html",
+  styleUrls: ["./create-issue.component.scss"],
 })
 export class CreateIssueComponent implements OnInit {
   issueForm: UntypedFormGroup;
@@ -25,10 +25,10 @@ export class CreateIssueComponent implements OnInit {
   ) {
     this.issueForm = this.formBuilder.group(
       {
-        summary: '',
-        description: '',
-        priority: '',
-        status: '',
+        summary: "",
+        description: "",
+        priority: "",
+        status: "",
       },
       { validators: Validators.required }
     );

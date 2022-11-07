@@ -1,16 +1,16 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, Inject, OnInit } from "@angular/core";
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
-import { PRIORITIES, STATUSES } from '../app.constants';
-import { Issue } from '../app.interfaces';
-import { IssueService } from '../issue.service';
+import { PRIORITIES, STATUSES } from "../app.constants";
+import { Issue } from "../app.interfaces";
+import { IssueService } from "../issue.service";
 
 @Component({
-  selector: 'app-view-issue',
-  templateUrl: './view-issue.component.html',
-  styleUrls: ['./view-issue.component.scss'],
+  selector: "app-view-issue",
+  templateUrl: "./view-issue.component.html",
+  styleUrls: ["./view-issue.component.scss"],
 })
 export class ViewIssueComponent implements OnInit {
   issueForm: UntypedFormGroup;
@@ -67,7 +67,7 @@ export class ViewIssueComponent implements OnInit {
           this.matDialogRef.close();
         })
         .catch(() => {
-          this.snackBar.open('Browser storage unavailable!', null, {
+          this.snackBar.open("Browser storage unavailable!", null, {
             duration: 3000,
           });
         });

@@ -19,9 +19,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Priority</mat-label>
         <mat-select formControlName="priority" required>
-          <mat-option *ngFor="let priority of priorities" [value]="priority">{{
-            priority
-          }}</mat-option>
+          <mat-option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</mat-option>
         </mat-select>
       </mat-form-field>
     </p>
@@ -29,9 +27,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Status</mat-label>
         <mat-select formControlName="status" required>
-          <mat-option *ngFor="let status of statuses" [value]="status">{{
-            status
-          }}</mat-option>
+          <mat-option *ngFor="let status of statuses" [value]="status">{{ status }}</mat-option>
         </mat-select>
       </mat-form-field>
     </p>
@@ -39,12 +35,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button
-    [disabled]="issueForm.invalid"
-    mat-flat-button
-    color="primary"
-    (click)="createIssue()"
-  >
-    Create
-  </button>
+  <button [disabled]="issueForm.invalid" mat-flat-button color="primary" (click)="createIssue()">Create</button>
 </mat-dialog-actions>
