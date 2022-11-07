@@ -1,4 +1,5 @@
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from "@angular/cdk/drag-drop";
+import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from "@angular/cdk/drag-drop";
+import { CommonModule } from "@angular/common";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
@@ -6,6 +7,7 @@ import { Subscription } from "rxjs";
 
 import { STATUSES } from "../app.constants";
 import { Issue } from "../app.interfaces";
+import { IssueCardComponent } from "../issue-card/issue-card.component";
 import { IssueService } from "../issue.service";
 import { ViewIssueComponent } from "../view-issue/view-issue.component";
 
@@ -18,6 +20,8 @@ export interface Lane {
   selector: "app-kanban",
   templateUrl: "./kanban.component.html",
   styleUrls: ["./kanban.component.scss"],
+  standalone: true,
+  imports: [DragDropModule, CommonModule, IssueCardComponent],
 })
 export class KanbanComponent implements OnInit, OnDestroy {
   private issueList: Issue[];

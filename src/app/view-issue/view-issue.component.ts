@@ -1,6 +1,12 @@
+import { TextFieldModule } from "@angular/cdk/text-field";
+import { CommonModule } from "@angular/common";
 import { Component, Inject, OnInit } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatIconModule } from "@angular/material/icon";
+import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
 import { PRIORITIES, STATUSES } from "../app.constants";
@@ -11,6 +17,17 @@ import { IssueService } from "../issue.service";
   selector: "app-view-issue",
   templateUrl: "./view-issue.component.html",
   styleUrls: ["./view-issue.component.scss"],
+  standalone: true,
+  imports: [
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    CommonModule,
+    MatButtonModule,
+    TextFieldModule,
+    MatFormFieldModule,
+    MatDialogModule,
+  ],
 })
 export class ViewIssueComponent implements OnInit {
   issueForm: UntypedFormGroup;

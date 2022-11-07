@@ -1,7 +1,8 @@
+import { CommonModule } from "@angular/common";
 import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { MatSort } from "@angular/material/sort";
-import { MatTableDataSource } from "@angular/material/table";
+import { MatSort, MatSortModule } from "@angular/material/sort";
+import { MatTableDataSource, MatTableModule } from "@angular/material/table";
 
 import { Issue } from "../app.interfaces";
 import { IssueService } from "../issue.service";
@@ -11,6 +12,8 @@ import { ViewIssueComponent } from "../view-issue/view-issue.component";
   selector: "app-issue-list",
   templateUrl: "./issue-list.component.html",
   styleUrls: ["./issue-list.component.scss"],
+  standalone: true,
+  imports: [MatTableModule, MatSortModule, CommonModule],
 })
 export class IssueListComponent implements OnInit, AfterViewInit {
   issuesTableDataSource: MatTableDataSource<Issue>;

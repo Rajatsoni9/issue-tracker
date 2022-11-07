@@ -1,6 +1,11 @@
+import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
-import { MatDialogRef } from "@angular/material/dialog";
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from "@angular/forms";
+import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
 
 import { PRIORITIES, STATUSES } from "../app.constants";
 import { Issue } from "../app.interfaces";
@@ -10,6 +15,16 @@ import { IssueService } from "../issue.service";
   selector: "app-create-issue",
   templateUrl: "./create-issue.component.html",
   styleUrls: ["./create-issue.component.scss"],
+  standalone: true,
+  imports: [
+    MatDialogModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatInputModule,
+    CommonModule,
+    MatButtonModule,
+  ],
 })
 export class CreateIssueComponent implements OnInit {
   issueForm: UntypedFormGroup;
