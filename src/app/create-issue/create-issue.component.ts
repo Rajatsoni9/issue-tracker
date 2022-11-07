@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 import { PRIORITIES, STATUSES } from '../app.constants';
@@ -12,7 +12,7 @@ import { IssueService } from '../issue.service';
   styleUrls: ['./create-issue.component.scss'],
 })
 export class CreateIssueComponent implements OnInit {
-  issueForm: FormGroup;
+  issueForm: UntypedFormGroup;
 
   priorities: string[] = PRIORITIES;
 
@@ -20,7 +20,7 @@ export class CreateIssueComponent implements OnInit {
 
   constructor(
     private matDialogRef: MatDialogRef<CreateIssueComponent>,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private issueService: IssueService
   ) {
     this.issueForm = this.formBuilder.group(

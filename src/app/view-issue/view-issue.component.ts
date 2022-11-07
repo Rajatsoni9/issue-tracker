@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -13,7 +13,7 @@ import { IssueService } from '../issue.service';
   styleUrls: ['./view-issue.component.scss'],
 })
 export class ViewIssueComponent implements OnInit {
-  issueForm: FormGroup;
+  issueForm: UntypedFormGroup;
 
   priorities: string[] = PRIORITIES;
 
@@ -23,7 +23,7 @@ export class ViewIssueComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public issue: Issue,
     private matDialogRef: MatDialogRef<ViewIssueComponent>,
     private issueService: IssueService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private snackBar: MatSnackBar
   ) {}
 
